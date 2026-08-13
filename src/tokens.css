@@ -1,0 +1,109 @@
+/**
+ * Design tokens
+ * ─────────────
+ * Two layers, on purpose:
+ *
+ * 1. Primitives   — the raw palette. Named after what the color IS
+ *                    (a hue/shade). Rarely used directly in components.
+ * 2. Semantic     — named after what a color is FOR (a "role"). Components
+ *    (role) tokens  should only ever reference these, never a primitive
+ *                    or a raw hex directly.
+ *
+ * Why bother with two layers? A couple of roles in this palette happen to
+ * share the same hex today (e.g. primary text and borders are both
+ * #F3F3F3). If the semantic tokens pointed at *each other*
+ * (--color-border: var(--color-text-primary)) they'd be accidentally
+ * coupled — change text color for a contrast fix later, and borders
+ * change with it for no reason. Instead both point at the same primitive
+ * independently, so they can diverge the moment there's a real reason to.
+ *
+ * This app is dark-mode-first with a single theme right now, so these
+ * live unconditionally on :root. If a light theme is ever added, it would
+ * override the semantic layer only (inside e.g. a [data-theme="light"]
+ * block) — the primitives and the role *names* wouldn't need to change,
+ * just which primitive each role points to.
+ */
+
+:root {
+  /* ============================= */
+  /* 1. Primitives — raw palette   */
+  /* ============================= */
+  --palette-black: #000000;
+  --palette-charcoal: #1c1c1c;
+  --palette-blue-700: #185caa;
+  --palette-blue-300: #86bfff;
+  --palette-blue-100: #cbe3ff;
+  --palette-white-smoke: #f3f3f3;
+  --palette-gray-300: #d0d0d0;
+
+  /* ============================= */
+  /* 2. Semantic — color roles     */
+  /* ============================= */
+
+  /* Surfaces */
+  --color-bg: var(--palette-black);
+  --color-surface: var(--palette-charcoal);
+
+  /* Text */
+  --color-text-primary: var(--palette-white-smoke);
+  --color-text-secondary: var(--palette-gray-300);
+  --color-accent-text: var(--palette-blue-300); /* calorie values, selected date */
+
+  /* Action (buttons) */
+  --color-action: var(--palette-blue-700);
+  /* Hover/active are *derived*, not new palette entries: lighten toward white
+     for hover, darken toward black for the pressed state. On a dark UI,
+     lightening on hover reads as "lighting up" — clearer affordance than
+     darkening, which is what you'd do on a light-mode button instead. */
+  --color-action-hover: color-mix(in srgb, var(--color-action) 85%, white);
+  --color-action-active: color-mix(in srgb, var(--color-action) 70%, black);
+  --color-on-action: var(--palette-white-smoke); /* text/icon color sitting on a filled button */
+
+  /* Fills */
+  --color-fill-subtle: var(--palette-blue-100); /* subtle fills, chart track */
+
+  /* Borders */
+  --color-border: var(--palette-white-smoke);
+
+  /* ============================= */
+  /* Borders                       */
+  /* ============================= */
+  --border-width: 1px;
+
+  /* ============================= */
+  /* Spacing — 4px base grid       */
+  /* ============================= */
+  /* Numbered (not t-shirt sized) so the relationship to pixels is legible
+     at a glance once you know the base: --space-4 = 4 * 4px = 16px. */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+
+  /* ============================= */
+  /* Type scale                    */
+  /* ============================= */
+  --font-family-base: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Helvetica, Arial, sans-serif;
+
+  --font-size-xs: 0.75rem; /* 12px — captions, fine print */
+  --font-size-sm: 0.875rem; /* 14px — secondary text, labels */
+  --font-size-base: 1rem; /* 16px — body text, button labels */
+  --font-size-lg: 1.25rem; /* 20px — subheadings */
+  --font-size-xl: 1.5rem; /* 24px — section headings */
+  --font-size-2xl: 2rem; /* 32px — screen titles */
+  --font-size-3xl: 2.5rem; /* 40px — hero numbers, e.g. calorie totals */
+
+  --font-weight-regular: 400;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  --line-height-tight: 1.2; /* headings, large numbers */
+  --line-height-normal: 1.5; /* body text */
+}

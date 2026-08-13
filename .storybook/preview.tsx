@@ -1,7 +1,17 @@
 import type { Preview } from '@storybook/react-vite'
+import '../src/tokens.css'
+import './preview.css'
 
 const preview: Preview = {
   parameters: {
+    backgrounds: {
+      default: 'app',
+      options: {
+        app: { name: 'App background', value: '#000000' },
+        surface: { name: 'Surface', value: '#1C1C1C' },
+      },
+    },
+
     controls: {
       matchers: {
        color: /(background|color)$/i,
