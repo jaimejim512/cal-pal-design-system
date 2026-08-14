@@ -1,0 +1,64 @@
+.chip {
+  /* Collapsed width is specific to this component — no other component
+     needs it, so it's scoped here rather than in the global tokens file. */
+  --chip-collapsed-width: 130px;
+
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  width: var(--chip-collapsed-width);
+  max-width: 100%;
+  margin: 0;
+  padding: var(--space-2) var(--space-4);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-full);
+  background: transparent;
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+  transition: width 0.2s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .chip {
+    transition: none;
+  }
+}
+
+.chip:focus-visible {
+  outline: 2px solid var(--color-action);
+  outline-offset: 2px;
+}
+
+.chip-label {
+  flex: 1 1 auto;
+  /* Flex items default to min-width: auto, which stops them shrinking
+     below their content size — that would defeat the overflow clip below. */
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-align: left;
+  color: var(--color-text-primary);
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-regular);
+
+  /* Fades the last ~20px of the label's box to transparent. If the label
+     is shorter than the box, the text never reaches this region, so
+     nothing visibly fades — it only "activates" on overflow. */
+  mask-image: linear-gradient(
+    to right,
+    black calc(100% - 20px),
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    black calc(100% - 20px),
+    transparent 100%
+  );
+}
+
+.chip[aria-expanded="true"] .chip-label {
+  mask-image: none;
+  -webkit-mask-image: none;
+}

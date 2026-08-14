@@ -2,7 +2,7 @@
   background-color: var(--color-action);
   color: var(--color-on-action);
   border: none;
-  border-radius: 8px;
+  border-radius: var(--radius-full);
   padding: var(--space-3) var(--space-4);
   font-family: var(--font-family-base);
   font-size: var(--font-size-base);
