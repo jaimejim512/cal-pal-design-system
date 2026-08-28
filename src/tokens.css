@@ -27,14 +27,15 @@
 :root {
   /* ============================= */
   /* 1. Primitives — raw palette   */
-  /* ============================= */
+  /* ============================= */   
   --palette-black: #000000;
-  --palette-charcoal: #1c1c1c;
-  --palette-blue-700: #185caa;
+  --palette-blue-700: #1582FF;
   --palette-blue-300: #86bfff;
-  --palette-blue-100: #cbe3ff;
-  --palette-white-smoke: #f3f3f3;
+  --palette-blue-100: #cbe3ff; /* Unfilled Ring */
+  --palette-gray-900: #1c1c1c;
+  --palette-gray-700: #3A3A3A;
   --palette-gray-300: #d0d0d0;
+  --palette-gray-100: #f3f3f3;
 
   /* ============================= */
   /* 2. Semantic — color roles     */
@@ -42,10 +43,10 @@
 
   /* Surfaces */
   --color-bg: var(--palette-black);
-  --color-surface: var(--palette-charcoal);
+  --color-surface: var(--palette-gray-900);
 
   /* Text */
-  --color-text-primary: var(--palette-white-smoke);
+  --color-text-primary: var(--palette-gray-100);
   --color-text-secondary: var(--palette-gray-300);
   --color-accent-text: var(--palette-blue-300); /* calorie values, selected date */
 
@@ -57,13 +58,13 @@
      darkening, which is what you'd do on a light-mode button instead. */
   --color-action-hover: color-mix(in srgb, var(--color-action) 85%, white);
   --color-action-active: color-mix(in srgb, var(--color-action) 70%, black);
-  --color-on-action: var(--palette-white-smoke); /* text/icon color sitting on a filled button */
+  --color-on-action: var(--palette-gray-100); /* text/icon color sitting on a filled button */
 
   /* Fills */
   --color-fill-subtle: var(--palette-blue-100); /* subtle fills, chart track */
 
   /* Borders */
-  --color-border: var(--palette-white-smoke);
+  --color-border: var(--palette-gray-100);
 
   /* ============================= */
   /* Borders                       */
