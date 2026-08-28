@@ -1,5 +1,16 @@
 .chip-group {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   gap: var(--space-3);
+  overflow-x: auto;
+  /* Stops the swipe from also scrolling the page once the row hits its end. */
+  overscroll-behavior-x: contain;
+  /* The row scrolls the same either way — this just hides the scrollbar
+     chrome to match a chip carousel rather than a form control. */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.chip-group::-webkit-scrollbar {
+  display: none;
 }

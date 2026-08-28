@@ -38,6 +38,13 @@ export function Chip({ label, expanded, onToggle }: ChipProps) {
       className="chip"
       aria-expanded={expanded}
       onClick={onToggle}
+      onFocus={(event) =>
+        event.currentTarget.scrollIntoView({
+          behavior: "smooth",
+          block: "nearest",
+          inline: "nearest",
+        })
+      }
       style={
         expanded && expandedWidth !== null
           ? { width: expandedWidth }
